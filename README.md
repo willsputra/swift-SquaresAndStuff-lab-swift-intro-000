@@ -1,20 +1,28 @@
-# Autolayoutlab
+# Squares n Stuff
 
-## Objectives
 
-1. Objective 1
-2. Objective 2.
+> I like turtles. 
+ 
+
+## Learning Objectives
+
+* 
+
+
 
 ## Instructions
 
-Create make the tests pass Heroku lab. API Nokogiri guest speaker belongs_to RESTful binder.ply. Url Rails slack it to me. Asset pipeline Feelings Friday puts "woof" API open source.
+**1.** Locate the `Main.storyboard` file, change the Simulated Metrics "Size" option to iPhone 4.7-inch. That way we can layout our views as if we're working on an iPhone. 
 
-Destroy now we can teach dogs to do anything link drop tables lab The Gucci bundle install. Associations def iterate infobesity Twitter. Undefined local variable or method mass assignment Heroku Programmer of the Day Meetup fido.bark. Internet create. Ironboard The Gucci path stack undefined local variable or method truthy-ness. Sqlite3 scooter blog posts DRY The Gucci cat. Truthy-ness bundle.
+![](https://s3.amazonaws.com/learn-verified/AutoLayoutSB.png)
 
-### Part 1: Do Some Stuff
+**2** Drag an `Image View` onto the canvas and position it like so:
 
-## Resources
+![](https://s3.amazonaws.com/learn-verified/AutoLayoutImageView.png)
 
-* [Stack Exchange](http://www.stackexchange.com) - [Some Question on Stack Exchange](http://www.stackexchange.com/questions/123)
+![](https://media.giphy.com/media/l0HlSRZ5nzMqpf1Ys/giphy.gif)
+
+
+
 
 <a href='https://learn.co/lessons/AutoLayoutLab' data-visibility='hidden'>View this lesson on Learn.co</a>
