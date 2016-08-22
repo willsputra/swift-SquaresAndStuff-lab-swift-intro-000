@@ -20,7 +20,7 @@
 
 ![](https://s3.amazonaws.com/learn-verified/AutoLayoutImageView.png)
 
-![](https://media.giphy.com/media/l0HlSRZ5nzMqpf1Ys/giphy.gif)
+![](https://media.giphy.com/media/l0HlzZlkm2MIbFjQQ/giphy.gif)
 
 
 
