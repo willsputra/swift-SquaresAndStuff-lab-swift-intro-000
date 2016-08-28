@@ -9,7 +9,18 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var coverPhotoImageView: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView.layer.borderWidth = 3.0
+        profileImageView.layer.cornerRadius = 10.0
+        profileImageView.layer.masksToBounds = true
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 }
