@@ -1,15 +1,16 @@
-# Space Profile
+# Space Profile Lab
+
 ![](http://i.imgur.com/9UXK1hs.jpg?1)
 
 > Existence is a series of footnotes to a vast, obscure, unfinished masterpiece. -[Vladimir Nabokov](https://en.wikipedia.org/wiki/Vladimir_Nabokov)
  
-## Learning Objectives
+## Overview
 
-* Complete this lab
+In this lan, you'll create an app using Auto Layout and constraints. 
 
 ## Instructions
 
-In this lab, you'll use Auto Layout and constraints to create an app that looks like this:
+The app you create will look like this:
 
 ![iOS app](https://s3.amazonaws.com/learn-verified/AutoLayoutAlbertName.png)
 
