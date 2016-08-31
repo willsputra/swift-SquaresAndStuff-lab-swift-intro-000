@@ -2,185 +2,209 @@
 ![](http://i.imgur.com/9UXK1hs.jpg?1)
 
 > Existence is a series of footnotes to a vast, obscure, unfinished masterpiece. -[Vladimir Nabokov](https://en.wikipedia.org/wiki/Vladimir_Nabokov)
-
  
 ## Learning Objectives
 
-* 
-
-
+* Complete this lab
 
 ## Instructions
 
-**1.** Locate the `Main.storyboard` file, change the Simulated Metrics "Size" option to iPhone 4.7-inch. That way we can layout our views as if we're working on an iPhone. 
+In this lab, you'll use Auto Layout and constraints to create an app that looks like this:
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutSB.png)
+![iOS app](https://s3.amazonaws.com/learn-verified/AutoLayoutAlbertName.png)
 
-**2** Drag an `Image View` onto the canvas and position it like so:
+This app will use constraints so that it look good no matter what devie you run the app on.
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutImageView.png)
+Let's go! To get started, open up `SquaresNStuff.xcodeproj`.
 
-**3** Lets add some constraints to this `Image View` object.
+1. Open up `Main.storyboard` in Interfae Builder. Select **View Controller Scene** and make sure the **Size** in the Attributes Inspector is set to **iPhone 4.7-inch**. This will allow you to lay out your UI as though you're working on an iPhone (although it will still look fine on other devices).
 
-![](https://media.giphy.com/media/l0HlzZlkm2MIbFjQQ/giphy.gif)
+    ![Simulated Metrics](https://s3.amazonaws.com/learn-verified/AutoLayoutSB.png)
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutImage.png)
+2. Drag a new `UIImageView` from the object library into the view controller scene and position it so it fills the top of the application, like this:
 
-After setting our constraints like this, we need to clean it up. Anytime you setup constraints like this, don't take it for granted. Don't assume the constraints you just set are where you want them to be. Lets step through each one and make sure they're set to the following:
+    ![`UIImageView`](https://s3.amazonaws.com/learn-verified/AutoLayoutImageView.png)
 
-* Image View.Top - Equal - Top Layout Guide.Bottom ; Constant = 0, Multiplier = 1
+3. Add some constraints to this new image view. One way to add constraints to a view is by <kbd>Control</kbd>-dragging from one view to another. You haven't seen this in action yet, so here's an example of how you can constrain the new image view you added by its parent view, the main view for the app:
 
-* Image View.Leading - Equal - Superview.Leading ; Constant = 0, Multiplier = 1
+    ![Constraining views](https://media.giphy.com/media/l0HlzZlkm2MIbFjQQ/giphy.gif)
 
-* Image View.Trailing - Equal - Superview.Trailing; Constant = 0, Multiplier = 1
+    After <kbd>Control</kbd>-dragging from the **Image View** to the **View**, a menu will appear in which you can add a specific constraint. Contrain the image view to the parent view by adding these four new constraints:
 
-* Image View.Height - Equal - Superview.Height; Constant = 0, Multiplier = 0.25
+    1. Leading Space to Container
+    2. Trailing Space to Container
+    3. Vertical Spacing to Top Layer
+    4. Equal Heights
 
+    When you're done, the constraints menu will look like this:
 
+    ![Constraints menu](https://s3.amazonaws.com/learn-verified/AutoLayoutImage.png)
 
-What if you see something like this?
+    You'll also see your new constraints listed in the object library:
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutBad.png)
+    ![Constraints in object library](https://s3.amazonaws.com/learn-verified/object-library-constraints.png)
 
-It seems like everything is backwards, we don't want that. We want it read the other way around (although technically you don't have to do this). I prefer to fix this when I see it that way it reads like a sentence and I stay consistent with how every other one is setup.
+4. Sometimes when you create constraints, they need to be tweaked a bit. You can tweak the constraints in the Size Inspector, which you can bring up by selecting one of the constraints in the object library. For example, select **Image View.top = Top Layout Guide.bottom - 20** in the object library. You'll see its size attributes in its Size Inspector:
 
-Select the drop down menu to the right of `Superview.Trailing Margin` to be presented with the following:
+    ![Contraint size attributes](https://s3.amazonaws.com/learn-verified/constraint-size-attributes.png)
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutReverse.png)
+    You'll see several key attributes in this pane. The first are the **First Item**, **Relation**, and **Second Item** attributes. This means that the first item is _constrained_ to the second item by the given relation. The second import set of items is **Constant** and **Multiplier**, which parameterize **Relation**.
 
-You will then want to select "Reverse First And Second Item", doing that will put things back in the correct order.
+    The constraints you added to the image view should be set up like this:
 
---- 
+    * **Image View.top = Top Layout Guide.bottom - 20**
+		* **First Item:** ImageView.Top
+		* **Relation:** Equal
+		* **Second Item:** Top Layout Guide.Bottom
+		* **Constant:** 0 (by default, this is -20, so you'll need to change this)
+		* **Multiplier:** 1
+	* **Image View.leading = leadingMargin - 20**
+		* **First Item:** ImageView.Leading
+		* **Relation:** Equal
+		* **Second Item:** Superview.Leading Margin
+		* **Constant:** 0
+		* **Multiplier:** 1
+	* **trailingMargin = Image View.trailing - 20**
+		* By default, this constraint reverses the **First** and **Second Item**. To fix this, open the menu next to **Second Item** and select **Reverse First and Second Item** so that Image View.Trailing is the **First Item** and Superview.Trailing Margin is the **Second Item**.
+		* **Relation:** Equal
+		* **Constant:** 0
+		* **Multiplier:** 1
+	* **Image View.height = height**
+		* **First Item:** Image View.Height
+		* **Relation:** Equal
+		* **Second Item:** Superview.Height
+		* **Constant:** 0
+		* **Multiplier:** 0.25
 
-**4.** You just added constraints to this Image View object but it might not appear as if any changes were made in your canvas. Update The Frames so that way you can see what this might look like at run-time.
+5. You'll now see a warning in Xcode's toolbar. Select the **View Controller Scene** in the storyboard, then select **Update Frames** from the **Resolve Auto Layout Issues** menu.
 
-With your `View` selected, hit that triangle looking thing in the lower right of Xcode to be presented with this Menu:
+    ![Resolve Auto Layout Issues](https://s3.amazonaws.com/learn-verified/AutoLayoutTriangle.png)
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutTriangle.png)
+    Your canvas should now look like this:
 
-Select "Update Frames" which should now have your Canvas looking like the following:
+    ![Updated frames](https://s3.amazonaws.com/learn-verified/AutoLayoutFrame.png)
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutFrame.png)
+6. When designing your views, it's good to work with some dummy data, so you can get a sense of how the UI will really look. This project includes a spaceship image that you can use to fill in the image view you just created. In the image view's Attributes Inspector, set the image to `SpaceShip`. Set the **Mode** (again, in the Attributes Inspector) to **Aspect Fill**, and make sure **Clip Subviews** is unchecked.
 
-**5.** When designing your views, you should work with some Dummy Data so that way you get a good sense as to what we're building here. 
+7. Build and run your app. It'll look something like this:
 
-We've included a `SpaceShip` image for you. With your Image View selected in Interface Builder:
+    ![UI](https://s3.amazonaws.com/learn-verified/squaresnstuff-ui-1.png)
 
+8. Back in Interface Builder, drag another image view onto the canvas. Put in the center of the UI so that it overlaps the spaceship image view, like this:
 
-* Set the `Image` of this Image View to be this `SpaceShip` Image. 
-* Change the Mode (under the View category) to be Aspect Fill.
-* Check off the "Clip Subviews" option under the View category
+    ![Profile Image](https://s3.amazonaws.com/learn-verified/AutolayoutTheStein.png)
 
-Lets run our application now, what does it look like?
+    Set its size to 117×117. (You'll be constraining this later, but for now it will help you position it properly.)
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutSpace.png)
+9. Now you need to set up constraints for this new image view. We'll be doing these one by one, to make it easier. In the end, this image view should be centered in the main view.
 
-**5.** Drag another Image View onto the canvas.
+    1. <kbd>Control</kbd>-drag from your new image view to the main view (its parent view). Select **Center Horizontally in Container** from the pop-up menu. Select the new constraint, labeled **Image View.centerX = centerX**, from the object library, and make sure its attributes are set correctly. They should be:
+        * **First Item:** Image View.Center X
+        * **Relation:** Equal
+        * **Second Item:** Superview.Center X
+        * **Constant:** 0
+        * **Multiplier:** 1
+	2. <kbd>Control</kbd>-drag from the new image view to the spaceship's image view. Select **Vertical Spacing** from the pop-up menu. Select the new constraint, labeled **Image View.top = SpaceShip.bottom - 57**, from the object library, and make sure its attributes are set as follows:
+		* **First Item:** Image View.Top
+		* **Relation:** Equal
+		* **Second Item:** SpaceShip.Bottom
+		* **Constant:** 0
+		* **Multiplier:** 0.75
+	3. Create another constraint by <kbd>Control</kbd>-dragging from the new image view to the spaceship's image view (again). Select **Equal Heights** from the pop-up menu. Select this constraint, labeled **Image View.height = SpaceShip.height**, from the object library, and make sure its attributes are set as follows:
+		* **First Item:** Image View.Height
+		* **Relation:** Equal
+		* **Second Item:** SpaceShip.Height
+		* **Constant:** 0
+		* **Multiplier:** 0.7
+	4. Finally, the last constraint you need to worry about is the width of your new image view. You want it to be square, and its height is set relative to that of the spaceship's image view (which is, in turn, relative to the height of whatever device the app is running on). This might seem complicated, but it's actually pretty easy to solve. <kbd>Control</kbd>-drag from the new image view to itself (crazy, but it works!) and select **Aspect Ratio** from the pop-up menu. Select the new constraint, labeled **aspect = 1:1**, from the object library, and make sure its attributes are set like this:
+		* **First Item:** Image View.Width
+		* **Relation:** Equal
+		* **Second Item:** Image View.Height
+		* **Constant:** 0
+		* **Multiplier:** 1:1 (note the colon!)
 
-We will want this new ImageView positioned similar to how Facebook does it. We want it positioned somewhat like this:
+10. Select your new image view. In its Attributes Inspector, set the **Image** to `AlbertEinstein`. Its **Mode** should be set to **Aspect Fit**.
 
-![](https://s3.amazonaws.com/learn-verified/AutolayoutTheStein.png)
+11. Fix the warning by updating the frames, as you did before.
 
-**6.** Lets set these constraints up one at a time. The first will be centering it in our view.
+12. Build and run your app again. It should look something like this:
 
-We will want to select the option "Center Horizontally In Container" when dragging from our Image View to the View. Lets check out that constraint to make sure it reads correctly:
+    ![UI](https://s3.amazonaws.com/learn-verified/squaresnstuff-ui-2.png)
 
-* Image View.Center X - Equal - Superview.Center X ; Constant = 0, Multiplier = 1
+13. Let's jazz this app up by putting a nice border around Albert Einstein's profile photo. Open up `ViewController.swift` in an assistant editor. <kbd>Control</kbd>-drag a new IB outlet from the profile photo image view to `ViewController`. Name this outlet `profileImageView`.
 
-We want to now create a constraint from the Image View to the SpaceShip (which is itself an Image View). Drag from the Image View to the SpaceShip and then select "Vertical Spacing"
+14. Open up `ViewController.swift` in the code editor. Add this code to the `viewDidLoad()` method (after the call to `super.viewDidLoad()` in `ViewController` to draw a border around our friend Albert:
 
-In looking into this new constraint, we want to make sure it reads as follows (you might have to adjust some things):
+        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView.layer.borderWidth = 3.0
+        profileImageView.layer.cornerRadius = 10.0
+        profileImageView.layer.masksToBounds = true
 
-* Image View.Top - Equal - SpaceShip.Bottom ; Constant = 0, Multiplier = 0.75
+15. Build and run your app again. You should now see something like this:
 
-Now drag from the Image View to the SpaceShip for a second time to create another constraint. Select Equal Heights. Inspecting this constraint, get it to read as follows:
+    ![UI](https://s3.amazonaws.com/learn-verified/squaresnstuff-ui-3b.png)
 
-* Image View.Height - Equal - SpaceShip.Height ; Constant = 0, Multiplier = 0.7
+16. Looks pretty good! The spaceship looks a bit off, though. Ideally, it would fill the entire width of the screen. Let's fix that.
 
-Last constraint we need to worry about is the Width of this Image View, since we want it to be a square and it's height is setting itself up relative to the height of the SpaceShip Image View which itself is setting up its height relative to the view of the iPhone, we can solve this problem easy!
+    The leading and trailing constraints you created for the spaceship image view need to be adjusted. In the **Second Item** menu, **Relative to margin** should be unchecked.
 
-Drag from the Image View to the Image View (itself!). Then select the "Aspect Ratio" option. Inspecting this constraint make sure it reads as follows:
+    ![Relative to margin](https://s3.amazonaws.com/learn-verified/relative-to-margin.png)
 
-* Image View.Width - Equal - Image View.Height ; Constant = 0, Multiplier = 1:1
+    Select both **SpaceShip.leading = leadingMargin** and **SpaceShip.trailing = trailingMargin** and uncheck **Relative to margin** from under the **Second Item** menu.
 
-**7.** We've included a profile image for you. Select the Image View and do the following:
+17. Notice, however, that **Relative to margin** is not an option for the **SpaceShip.top = Top Layout Guide.bottom** constraint, so how do you remove that blank margin from the top of the spaceship image?
 
-* Set the Image to be `AlbertEinstein`
-* Set the Mode under the View category to be "Aspect Fit"
+    To fix this constraint, you'll have to create a new one from scratch. Delete the **SpaceShip.top = Top Layout Guide.bottom** constraint. Create a new one by <kbd>Control</kbd>-dragging from the spaceship image view to its parent view (the main view of the scene). In the popup-menu, hold down <kbd>Option</kbd> to bring up alternative constraint options, and (while holding down <kbd>Option</kbd>) select the **Top Space To Container Margin** option.
 
-Now, run your app! 
+    The new constraint is called **SpaceShip.top = topMargin + 20**. Select this constraint from the object library, and make sure its attributes are set as follows:
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutAlberto.png)
+    * **First Item:** SpaceShip.Top
+    * **Relation:** Equal
+    * **Second Item:** Superview.Top Margin
+    * **Constant:** 0
+    * **Multiplier:** 1
 
-**8.** Head over to the `ViewController.swift` file, we want to add some borders around Mr. Einstein here. Drag over as outlets the two Image View objects we made here. Name that something that makes sense as to what they are. The space image view represents a cover photo and the other image view represents a profile image.
+18. Build and run the app again. It should look like this:
 
-Add the following code to the `viewDidLoad()` method. I named the Albert Einstein image view `profileImageView` when I dragged it over as a property.
+    ![UI](https://s3.amazonaws.com/learn-verified/squaresnstuff-ui-3.png)
 
-```swift
-profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
-profileImageView.layer.borderWidth = 3.0
-profileImageView.layer.cornerRadius = 10.0
-profileImageView.layer.masksToBounds = true
-```
+    Looking good!
 
-After doing this--run the app!
+19. One last thing: This app is nothing without a label for Mr. Einstein's name. Drag a new `UILabel` onto the canvas, positioning it below Einstein's image. This label should have the following options:
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutAlbertBorder.png)
+        * Change the font to Avenir Next, Regular, 26.0
+        * Change the alignment to Centered
+        * Change the text to "Albert Einstein"
+        * Change the shadow color to a nice light blue
+        * Change the shadow offset to 2 for horizontal and 1 for vertical
 
-Pretty!
+20. Let's set up the constraints for the label one by one. First, <kbd>Control</kbd>-drag from the label to the profile image view, and select **Center Horizontally** from the pop-up menu. Select the new constraint, labeled **Albert Einstein.centerX = Profile Image View.centerX**, from the object library, and make sure its attributes are as follows:
 
-**9.** Something seems a little off. I would prefer for the Spaceship image to not be constrained by those margins, lets fix that.
+	* **First Item:** Albert Einstein.Center X
+	* **Relation:** Equal
+	* **Second Item:** Profile Image View.Center X
+	* **Constant:** 0
+	* **Multiplier:** 1
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutMarginGetOut.png)
+21. <kbd>Control</kbd>-drag from the label to the profile image again, and select **Vertical Spacing** from the pop-up menu. Select the new constraint, labeled **Albert Einstein.top = Profile Image View.bottom + 16.5** (the exact number may be different, depending on how you positioned the label), and make sure the attributes are set as follows:
 
-The Leading and Trailing constraints we've created on our Cover Photo image view need to be changed. We want to uncheck the Relative To Margin option on both of them (like I did in the screenshot above).
+    * **First Item:** Albert Einstein.Top
+    * **Relation:** Equal
+    * **Second Item:** Profile Image View.Bottom
+    * **Constant:** 8
+    * **Multiplier:** 1
 
-You might notice that we don't have that option for the Top Constraint, hmm.
+22. You don't need to set up height or width constraints for the Albert Einstein label. `UILabel`s have _instrinsic content size_, which means that its height and width are based on the font you selected for the label. Since you already set the font for the label, that selected font will dictate the size of the label.
 
-Delete the current Top Constraint we setup for this Cover Photo Image View, we're going to create a new one. When dragging over from the cover photo image view to the view, we're presented with that screen that gives us various options. While holding down the `option` key on your keyboard with this menu open, we're presented with some additional options. With the `option` key held down, select the Top Space To Container Margin option.
+    If the label was set to a very long string, it would go off the app's screen, so if you were releasing this app you probably would want to constrain the width to prevent this problem, but for now the label will work well enough that you don't need to futz with the width in this app.
 
-After doing so, select this newly made constraint and make sure it reads as follows (note, the name of this image view is now Cover Photo Image View because of how I created my outlet):
+23. Fix the warning by updating your app's frames using the **Resolve Auto Layout Issues** menu, like before.
 
-* Cover Photo Image View.Top - Equal - Superview.Top Margin ; Constant = 0, Multiplier = 1
+24. Now build and run your app again. It should look like this:
 
-Now, run the app!
+    ![UI](https://s3.amazonaws.com/learn-verified/squaresnstuff-ui-4.png)
 
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutFixOnTop.png)
-
-We're beginning to make an app, looking good!
-
-**10.** Drag onto the canvas a  Label. Position it below the Albert Einstein image.
-
-Setup the following options on this Label:
-
-* Font - Avenir Next, Regular,  26.0
-* Alignment should be centered
-* Make it read as "Albert Einstein"
-* Select a light blue color as the "Shadow"
-* Setup the Shadow Offset option as follows: Horizontal = 2, Vertical = 1
-
-**11.** Label Constraints. Lets do these one at a time.
-
-We should first make sure the center x is equal to the center x of the Albert Einstein Image.
-
-Select the new label (the name of my label right now is Albert Einstein) and option drag over to the Profile Image View and select "Center Horizontally"
-
-The constraint should read as follows:
-
-* Albert Einstein.Center X - Equal - Profile Image View.Center X ; Constant = 0, Multiplier = 1
-
-Dragging from the Albert Einstein Label to the Profile Image View (which is a photo of Mr. Einstein), select the option "Vertical Spacing". Digging into that new constraint, it should read like this (you might have to adjust some things around in those drop down menus to make it read like this (maybe not)... I woke up like this):
-
-* Albert Einstein.Top - Equal - Profile Image View.Bottom ; Constant = 8, Multiplier = 1
-
-We don't need to setup the Height or Width here. Why? A `UILabel` has what's referred to as an intrinsic content size. It's height and width is based upon the font you use. We've established what font we are using along with the font size. THAT will dictate its height and width. So if we were to write in a very long name here.. what would happen? It would go off screen and that's a bad thing so we probably _should_ constrain the width of this label here if we were to release this to the app store but for now.. we're cool with it--lets move forward.
-
-Run the app!
-
-![](https://s3.amazonaws.com/learn-verified/AutoLayoutAlbertName.png)
-
-
-
+    And that's it! Congratulations on another successful lab!
 
 <a href='https://learn.co/lessons/AutoLayoutLab' data-visibility='hidden'>View this lesson on Learn.co</a>
 
