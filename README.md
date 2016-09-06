@@ -6,7 +6,7 @@
  
 ## Overview
 
-In this lan, you'll create an app using Auto Layout and constraints. 
+In this lab, you'll create an app using Auto Layout and constraints. 
 
 ## Instructions
 
