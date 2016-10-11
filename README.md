@@ -3,10 +3,10 @@
 ![](http://i.imgur.com/9UXK1hs.jpg?1)
 
 > Existence is a series of footnotes to a vast, obscure, unfinished masterpiece. -[Vladimir Nabokov](https://en.wikipedia.org/wiki/Vladimir_Nabokov)
- 
+
 ## Overview
 
-In this lab, you'll create an app using Auto Layout and constraints. 
+In this lab, you'll create an app using Auto Layout and constraints.
 
 ## Instructions
 
@@ -18,7 +18,7 @@ This app will use constraints so that it look good no matter what devie you run 
 
 Let's go! To get started, open up `SquaresNStuff.xcodeproj`.
 
-1. Open up `Main.storyboard` in Interfae Builder. Select **View Controller Scene** and make sure the **Size** in the Attributes Inspector is set to **iPhone 4.7-inch**. This will allow you to lay out your UI as though you're working on an iPhone (although it will still look fine on other devices).
+1. Open up `Main.storyboard` in Interface Builder.
 
     ![Simulated Metrics](https://s3.amazonaws.com/learn-verified/AutoLayoutSB.png)
 
@@ -136,7 +136,7 @@ Let's go! To get started, open up `SquaresNStuff.xcodeproj`.
 
 14. Open up `ViewController.swift` in the code editor. Add this code to the `viewDidLoad()` method (after the call to `super.viewDidLoad()` in `ViewController` to draw a border around our friend Albert:
 
-        profileImageView.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImageView.layer.borderColor = UIColor.white.cgColor
         profileImageView.layer.borderWidth = 3.0
         profileImageView.layer.cornerRadius = 10.0
         profileImageView.layer.masksToBounds = true
@@ -208,4 +208,3 @@ Let's go! To get started, open up `SquaresNStuff.xcodeproj`.
     And that's it! Congratulations on another successful lab!
 
 <a href='https://learn.co/lessons/AutoLayoutLab' data-visibility='hidden'>View this lesson on Learn.co</a>
-
